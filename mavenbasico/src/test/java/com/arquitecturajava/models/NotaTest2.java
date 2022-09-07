@@ -3,9 +3,12 @@ package com.arquitecturajava.models;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
-public class NotaTest {
+public class NotaTest2 {
 	
 	@Test
 	public void notaFueraDeRangosValidosTest() {
@@ -23,23 +26,16 @@ public class NotaTest {
 	
 	
 	
-	@Test
-	public void muyDeficienteTest() {
+	@ParameterizedTest
+	@DisplayName("Nota insuficiente valor:2 standar valor: 0,3 limites nota")
+	@ValueSource (doubles= {2,0,3})
+	public void muyDeficienteTest(double valorNota) {
 		
-		
-		Nota nota2 = new Nota("matematicas",2);
+		Nota nota2 = new Nota("matematicas",valorNota);
 		String calificacion= nota2.getCalificacion();
 		assertEquals("MuyDeficiente",calificacion);
 		
-		
-		Nota notaCero = new Nota("matematicas",0);
-		String calificacion2= notaCero.getCalificacion();
-		assertEquals("MuyDeficiente",calificacion2);
-		
-		
-		Nota nota3 = new Nota("matematicas",3);
-		String calificacion3= nota3.getCalificacion();
-		assertEquals("MuyDeficiente",calificacion3);
+	
 	}
 	
 	

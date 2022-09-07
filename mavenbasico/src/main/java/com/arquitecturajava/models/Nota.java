@@ -1,5 +1,7 @@
 package com.arquitecturajava.models;
 
+import java.util.Objects;
+
 public class Nota {
 
 	private String asignatura;
@@ -44,6 +46,22 @@ public class Nota {
 		}else return "SobreSaliente";
 		
 		
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(asignatura, valor);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Nota other = (Nota) obj;
+		return Objects.equals(asignatura, other.asignatura)
+				&& Double.doubleToLongBits(valor) == Double.doubleToLongBits(other.valor);
 	}
 
 	
