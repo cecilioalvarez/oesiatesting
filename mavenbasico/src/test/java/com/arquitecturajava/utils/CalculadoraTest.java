@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class CalculadoraTest {
+public class CalculadoraTest {
 
 	@Test
 	@DisplayName("Calculadora sumar dos numeros")
-	void sumaCalculadoratest() {
+	public void sumaCalculadoratest() {
 		//AAA (Arrange, Act , Assert)
 		
 		// arrange preparar el codido
@@ -27,7 +27,7 @@ class CalculadoraTest {
 	
 	@Test
 	@DisplayName("Calculadora restar dos numeros")
-	void restaCalculadoratest() {
+	public void restaCalculadoratest() {
 		
 		int numero1=3;
 		int numero2=4;
@@ -41,7 +41,7 @@ class CalculadoraTest {
 	}
 	@Test
 	@DisplayName("Calculadora multiplicar dos numeros")
-	void multiplicarCalculadoratest() {
+	public void multiplicarCalculadoratest() {
 		
 		int numero1=3;
 		int numero2=4;
@@ -56,7 +56,7 @@ class CalculadoraTest {
 	@Test
 	
 	@DisplayName("Calculadora dividir dos numeros")
-	void dividirCalculadoratest() {
+	public void dividirCalculadoratest() {
 		
 		int numero1=4;
 		int numero2=2;

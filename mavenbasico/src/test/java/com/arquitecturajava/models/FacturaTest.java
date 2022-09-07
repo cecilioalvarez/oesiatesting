@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class FacturaTest {
+public class FacturaTest {
 
 	@Test
 	@DisplayName(" calcula el importe con iva de la factura")
-	void calcularImporteIVA() {
+	public void calcularImporteIVA() {
 		
 		Factura f= new Factura(1,"ordenador",200);
 		assertEquals(242,f.getImporteConIVA());
@@ -21,6 +21,15 @@ class FacturaTest {
 		
 		Factura f= new Factura(1,"ordenador",200);
 		assertEquals(30,f.getImporteRetencion());
+		
+	}
+	
+	@Test
+	@DisplayName("calcula importe con descuento")
+	void calcularImporteConDescuentoFactura() {
+		
+		Factura f= new Factura(1,"ordenador",200);
+		assertEquals(170,f.getImporteConDescuento());
 		
 	}
 
