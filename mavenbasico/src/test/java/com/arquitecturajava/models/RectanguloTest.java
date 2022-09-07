@@ -6,6 +6,18 @@ import org.junit.jupiter.api.Test;
 
 public class RectanguloTest {
 
+	
+	@Test
+	public void checkSetters() {
+	
+		Rectangulo r= new Rectangulo(2,2);
+		r.setLado1(3);
+		r.setLado2(4);
+		assertEquals(3, r.getLado1());
+		assertEquals(4,r.getLado2());
+		
+	}
+	
 	@Test
 	public void calcularAreaTest() {
 	
