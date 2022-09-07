@@ -13,17 +13,20 @@ public class Nota {
 	public double getValor() {
 		return valor;
 	}
-	public void setValor(double nota) {
-		this.valor = nota;
+	public void setValor(double valor) {
+		if (valor<0 || valor>10) throw new RuntimeException("valor de nota no valido");
+		this.valor = valor;
 	}
 	public Nota(String asignatura, double valor) {
 		super();
-		this.asignatura = asignatura;
-		this.valor = valor;
+		this.setAsignatura(asignatura);
+		this.setValor(valor);
 	}
 	
 	public String getCalificacion() {
 		
+		// sacame un mensaje cuando sea menor de cero
+		// o mayor de 10
 		if (valor>0 && valor<3) {
 			
 			return "MuyDeficiente";
@@ -42,5 +45,6 @@ public class Nota {
 		
 		
 	}
+
 	
 }
