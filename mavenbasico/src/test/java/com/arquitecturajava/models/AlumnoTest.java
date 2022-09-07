@@ -48,5 +48,20 @@ class AlumnoTest {
 		
 		
 	}
+	@Test
+	void alumnoCursoAptoTest() {
+			
+		Nota nota=new Nota("matematias",2);
+		Nota nota2= new Nota("lengua",9);
+		Nota nota3= new Nota("lengua",7);
+		List<Nota> notas= new ArrayList<Nota>();
+	
+		Collections.addAll(notas, nota,nota2,nota3);
+		alumno.setLista(notas);
+		
+		assertTrue(alumno.apruebaElCurso());
+		
+		
+	}
 
 }
