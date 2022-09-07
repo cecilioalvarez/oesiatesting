@@ -21,12 +21,7 @@ class AlumnoTest {
 	public void setUp() {
 		
 		alumno= new Alumno();
-		notas= new ArrayList<Nota>();
-		Nota nota=new Nota("matematias",2);
-		Nota nota2= new Nota("lengua",3);
-		Nota nota3= new Nota("lengua",0);
-		Collections.addAll(notas, nota,nota2,nota3);
-		alumno.setLista(notas);
+		alumno.setLista(listaNotasInicial());
 		
 	}
 	@Test
@@ -51,17 +46,32 @@ class AlumnoTest {
 	@Test
 	void alumnoCursoAptoTest() {
 			
+		List<Nota> notas = listaNotasParaMedia();
+		alumno.setLista(notas);
+		assertTrue(alumno.apruebaElCurso());
+		
+		
+	}
+	
+	
+	
+	
+	private List<Nota> listaNotasParaMedia() {
 		Nota nota=new Nota("matematias",2);
 		Nota nota2= new Nota("lengua",9);
 		Nota nota3= new Nota("lengua",7);
 		List<Nota> notas= new ArrayList<Nota>();
 	
 		Collections.addAll(notas, nota,nota2,nota3);
-		alumno.setLista(notas);
-		
-		assertTrue(alumno.apruebaElCurso());
-		
-		
+		return notas;
 	}
 
+	private List<Nota> listaNotasInicial() {
+		notas= new ArrayList<Nota>();
+		Nota nota=new Nota("matematias",2);
+		Nota nota2= new Nota("lengua",3);
+		Nota nota3= new Nota("lengua",0);
+		Collections.addAll(notas, nota,nota2,nota3);
+		return notas;
+	}
 }
