@@ -27,10 +27,10 @@ public class Nota {
 		
 		// sacame un mensaje cuando sea menor de cero
 		// o mayor de 10
-		if (valor>0 && valor<3) {
+		if (valor>=0 && valor<=3) {
 			
 			return "MuyDeficiente";
-		}else if (valor>=3 && valor<5) {
+		}else if (valor>3 && valor<5) {
 			
 			return "Insuficiente";
 		}else if (valor>=5 && valor<6) {

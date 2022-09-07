@@ -11,15 +11,17 @@ public class NotaTest {
 	
 	
 	@Test
-	public void notaNoValidaTest() {
-		
-		
+	public void notaFueraDeRangosValidosTest() {
 		
 		RuntimeException excepcion = Assertions.assertThrows(RuntimeException.class, () -> {
 			Nota nota = new Nota("matematicas",-2);
 	  });
+		RuntimeException excepcion2 = Assertions.assertThrows(RuntimeException.class, () -> {
+			Nota nota = new Nota("matematicas",11);
+	  });
 		
 		assertEquals("valor de nota no valido", excepcion.getMessage());
+		assertEquals("valor de nota no valido", excepcion2.getMessage());
 	}
 	
 	
@@ -28,9 +30,19 @@ public class NotaTest {
 	public void muyDeficienteTest() {
 		
 		
-		Nota nota = new Nota("matematicas",2);
-		String calificacion= nota.getCalificacion();
+		Nota nota2 = new Nota("matematicas",2);
+		String calificacion= nota2.getCalificacion();
 		assertEquals("MuyDeficiente",calificacion);
+		
+		
+		Nota notaCero = new Nota("matematicas",0);
+		String calificacion2= notaCero.getCalificacion();
+		assertEquals("MuyDeficiente",calificacion2);
+		
+		
+		Nota nota3 = new Nota("matematicas",3);
+		String calificacion3= nota3.getCalificacion();
+		assertEquals("MuyDeficiente",calificacion3);
 	}
 	
 	
