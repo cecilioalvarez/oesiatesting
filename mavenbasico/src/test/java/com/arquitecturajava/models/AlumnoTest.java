@@ -1,10 +1,10 @@
 package com.arquitecturajava.models;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -22,13 +22,10 @@ class AlumnoTest {
 		
 		alumno= new Alumno();
 		notas= new ArrayList<Nota>();
-		
 		Nota nota=new Nota("matematias",2);
-		//Nota nota2= new Nota("lengua",3);
-		//Nota nota3= new Nota("lengua",0);
-		notas.add(nota);
-		//notas.add(nota2);
-		//notas.add(nota3);
+		Nota nota2= new Nota("lengua",3);
+		Nota nota3= new Nota("lengua",0);
+		Collections.addAll(notas, nota,nota2,nota3);
 		alumno.setLista(notas);
 		
 	}
@@ -40,21 +37,14 @@ class AlumnoTest {
 		alumno.addNota(nota);
 		assertTrue(alumno.getLista().contains(nota));
 		
-		
 	}
 	
 	@Test
 	void alumnoRemoveNotaTest() {
-		
-		//arrange o preparacion 
-		
-		
+			
 		Nota nota=new Nota("matematias",2);
-		
-		//assertEquals(2, alumno.getLista().size());
 		alumno.removeNota(nota);
-		
-		assertEquals(1,alumno.getLista().size());
+		assertFalse(alumno.getLista().contains(nota));
 		
 		
 	}
