@@ -3,6 +3,8 @@ package com.arquitecturajava.models;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,8 +13,6 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import com.arquitecturajava.models.mocks.NotaMock;
 
 class AlumnoTest {
 
@@ -56,10 +56,17 @@ class AlumnoTest {
 			
 		
 		List<Nota> lista = new ArrayList<Nota>();
-		addNotaLista(lista, "matematicas",3);
-		addNotaLista(lista, "lengua",4);
-		lista.add(new NotaMock());
-		lista.add(new NotaMock());
+		
+		Nota nota1Mock= mock(Nota.class);
+		when(nota1Mock.getCalificacion()).thenReturn("SobreSaliente");
+		
+		
+		Nota nota2Mock= mock(Nota.class);
+		when(nota2Mock.getCalificacion()).thenReturn("SobreSaliente");
+		
+	
+		lista.add(nota1Mock);
+		lista.add(nota2Mock);
 		
 		alumno.setNotas(lista);
 		
