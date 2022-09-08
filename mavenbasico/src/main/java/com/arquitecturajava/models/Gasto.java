@@ -3,31 +3,40 @@ package com.arquitecturajava.models;
 public class Gasto {
 
 	private double importe;
-	private int cuotas;
 
-	public Gasto(double importe, int cuotas) {
+	public Gasto(double importe) {
 		super();
 		this.importe = importe;
-		this.cuotas = cuotas;
+
 	}
+
 	public double getImporte() {
 		return importe;
 	}
+
 	public void setImporte(double importe) {
 		this.importe = importe;
 	}
-	public int getCuotas() {
-		return cuotas;
-	}
-	public void setCuotas(int cuotas) {
-		this.cuotas = cuotas;
-	}
-	
+
 	public double getImporte2Cuotas() {
-		return importe/2;
+		return importe / 2;
 	}
+
 	public double getImporte4Cuotas() {
-		return importe/4*1.20;
+		return importe / 4 * 1.20;
 	}
-	
+
+	public double getImporteCuotas(int cuotas) {
+
+		if (cuotas < 5) {
+
+			return importe / cuotas;
+		} else if (cuotas >= 5 && cuotas < 10) {
+
+			return importe / cuotas + 2;
+		} else
+			return importe / cuotas + 10;
+
+	}
+
 }
