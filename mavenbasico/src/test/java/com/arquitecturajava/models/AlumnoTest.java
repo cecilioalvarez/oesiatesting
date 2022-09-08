@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -58,7 +59,7 @@ class AlumnoTest {
 			
 		List<Nota> notas = listaNotaMayor();
 		alumno.setLista(notas);
-		assertEquals(new Nota("lengua",9),alumno.getNotaMayor());
+		assertEquals(new Nota("lengua",10),alumno.getNotaMayor());
 		
 		
 	}
@@ -70,8 +71,9 @@ class AlumnoTest {
 		List<Nota> notas = getListaNotasBasica();
 		alumno.setLista(notas);
 		List<Nota> notasSuspensas=alumno.getNotasSuspensos();
-		notasSuspensas.forEach((nota)->assertTrue(nota.getValor()<5));
-		
+		notasSuspensas.stream()
+		.map(Nota::getValor)
+		.map((nota)->nota<5).forEach(Assertions::assertTrue);
 		
 	}
 	
@@ -96,7 +98,7 @@ class AlumnoTest {
 		Nota nota5= new Nota("lengua",10);
 		List<Nota> notas= new ArrayList<Nota>();
 	
-		Collections.addAll(notas, nota,nota2,nota3);
+		Collections.addAll(notas, nota,nota2,nota3,nota4,nota5);
 		return notas;
 	}
 
