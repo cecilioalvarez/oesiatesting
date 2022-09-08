@@ -45,4 +45,41 @@ public class Alumno {
 		return total / lista.size() >= 5;
 
 	}
+	
+	
+	public Nota notaMayor() {
+
+		Nota notaMayor= lista.get(0);
+		
+
+		for (Nota n : lista) {
+
+			if (notaMayor.getValor()<n.getValor()) {
+				
+				
+				notaMayor=n;
+			}
+		}
+		return notaMayor;
+
+	}
+	
+	
+	public List<Nota> suspensos() {
+
+		List<Nota> suspensos=new ArrayList<Nota>();
+		
+
+		for (Nota n : lista) {
+
+			if (n.getValor()<5) {
+				
+				
+				suspensos.add(n);
+			}
+		}
+		return suspensos;
+
+	}
+	
 }

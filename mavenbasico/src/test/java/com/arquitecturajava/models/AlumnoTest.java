@@ -1,5 +1,6 @@
 package com.arquitecturajava.models;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -52,9 +53,30 @@ class AlumnoTest {
 		
 		
 	}
+	@Test
+	void alumnoNotaMayorTest() {
+			
+		List<Nota> notas = listaNotasParaMedia();
+		alumno.setLista(notas);
+		assertEquals(new Nota("lengua",9),alumno.notaMayor());
+		
+		
+	}
 	
 	
+	@Test
+	void alumnosNotasSuspensas() {
+			
+		List<Nota> notas = listaNotasParaMedia();
+		alumno.setLista(notas);
+		List<Nota> notasSuspensas=alumno.suspensos();
+		notasSuspensas.forEach((nota)->assertTrue(nota.getValor()<5));
+		
+		
+	}
 	
+	
+	/***************************/
 	
 	private List<Nota> listaNotasParaMedia() {
 		Nota nota=new Nota("matematias",2);
