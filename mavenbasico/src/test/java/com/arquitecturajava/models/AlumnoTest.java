@@ -37,35 +37,6 @@ class AlumnoTest {
 	}
 	
 	@Test
-	void alumnoRemoveNotaTest() {
-			
-		Nota nota=new Nota("matematias",2);
-		alumno.removeNota(nota);
-		assertFalse(alumno.getLista().contains(nota));
-		
-		
-	}
-	@Test
-	void alumnoCursoAptoTest() {
-			
-		List<Nota> notas = listaNotasParaMedia();
-		alumno.setLista(notas);
-		assertTrue(alumno.apruebaElCurso());
-		
-		
-	}
-	@Test
-	void alumnoNotaMayorTest() {
-			
-		List<Nota> notas = listaNotaMayor();
-		alumno.setLista(notas);
-		assertEquals(new Nota("lengua",10),alumno.getNotaMayor());
-		
-		
-	}
-	
-	
-	@Test
 	void alumnosNotasSuspensas() {
 			
 		List<Nota> notas = getListaNotasBasica();
@@ -78,29 +49,65 @@ class AlumnoTest {
 	}
 	
 	
-	/***************************/
-	
-	private List<Nota> listaNotasParaMedia() {
+	@Test
+	void alumnoRemoveNotaTest() {
+			
 		Nota nota=new Nota("matematias",2);
-		Nota nota2= new Nota("lengua",9);
-		Nota nota3= new Nota("lengua",7);
-		List<Nota> notas= new ArrayList<Nota>();
-	
-		Collections.addAll(notas, nota,nota2,nota3);
-		return notas;
+		alumno.removeNota(nota);
+		assertFalse(alumno.getLista().contains(nota));
+		
+		
 	}
 	
-	private List<Nota> listaNotaMayor() {
-		Nota nota=new Nota("matematias",2);
-		Nota nota2= new Nota("lengua",9);
-		Nota nota3= new Nota("lengua",7);
-		Nota nota4= new Nota("lengua",9);
-		Nota nota5= new Nota("lengua",10);
-		List<Nota> notas= new ArrayList<Nota>();
 	
-		Collections.addAll(notas, nota,nota2,nota3,nota4,nota5);
-		return notas;
+	
+	/**********************************/
+	@Test
+	void alumnoNotaMayorTest() {
+			
+		List<Nota> lista = new ArrayList<Nota>();
+		addNotaLista(lista, "matematicas",3);
+		addNotaLista(lista, "lengua",4);
+		addNotaLista(lista, "ingles",7);
+		addNotaLista(lista, "fisica",8);
+		alumno.setLista(lista);
+		assertEquals(new Nota("fisica",8),alumno.getNotaMayor());
+		
+		
 	}
+	@Test
+	void alumnoCursoAptoTest() {
+			
+		List<Nota> lista = new ArrayList<Nota>();
+		addNotaLista(lista, "matematicas",6);
+		addNotaLista(lista, "lengua",4);
+		addNotaLista(lista, "ingles",7);
+		addNotaLista(lista, "fisica",10);
+		alumno.setLista(lista);
+		assertTrue(alumno.apruebaElCurso());	
+		
+	}
+	
+	@Test
+	void alumnoCursoNoEsAptoTest() {
+			
+		List<Nota> lista = new ArrayList<Nota>();
+		addNotaLista(lista, "matematicas",2);
+		addNotaLista(lista, "lengua",4);
+		addNotaLista(lista, "ingles",7);
+		addNotaLista(lista, "fisica",2);
+		alumno.setLista(lista);
+		assertFalse(alumno.apruebaElCurso());
+		
+		
+	}
+	
+	private static void addNotaLista(List<Nota> lista, String asignatura,double valor) {
+		
+		lista.add( new Nota (asignatura,valor));
+	}
+	
+
 
 	private List<Nota> getListaNotasBasica() {
 		notas= new ArrayList<Nota>();
