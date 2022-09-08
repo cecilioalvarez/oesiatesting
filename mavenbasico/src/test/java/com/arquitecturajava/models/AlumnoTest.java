@@ -12,6 +12,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.arquitecturajava.models.mocks.NotaMock;
+
 class AlumnoTest {
 
 	Alumno alumno;
@@ -23,16 +25,16 @@ class AlumnoTest {
 	public void setUp() {
 		
 		alumno= new Alumno();
-		alumno.setLista(getListaNotasBasica());
+		alumno.setNotas(getListaNotasBasica());
 		
 	}
 	@Test
 	void alumnoAddNotaTest() {
 		
 		Nota nota= new Nota("matematicas",2);
-		assertFalse(alumno.getLista().contains(nota));
+		assertFalse(alumno.getNotas().contains(nota));
 		alumno.addNota(nota);
-		assertTrue(alumno.getLista().contains(nota));
+		assertTrue(alumno.getNotas().contains(nota));
 		
 	}
 	
@@ -40,7 +42,7 @@ class AlumnoTest {
 	void alumnosNotasSuspensas() {
 			
 		List<Nota> notas = getListaNotasBasica();
-		alumno.setLista(notas);
+		alumno.setNotas(notas);
 		List<Nota> notasSuspensas=alumno.getNotasSuspensos();
 		notasSuspensas.stream()
 		.map(Nota::getValor)
@@ -50,11 +52,30 @@ class AlumnoTest {
 	
 	
 	@Test
+	void alumnoGetNumeroSobreSalientes() {
+			
+		
+		List<Nota> lista = new ArrayList<Nota>();
+		addNotaLista(lista, "matematicas",3);
+		addNotaLista(lista, "lengua",4);
+		lista.add(new NotaMock());
+		lista.add(new NotaMock());
+		
+		alumno.setNotas(lista);
+		
+		assertEquals(2,alumno.getNumeroSobreSalientes());
+		
+		
+		
+	}
+	
+	
+	@Test
 	void alumnoRemoveNotaTest() {
 			
 		Nota nota=new Nota("matematias",2);
 		alumno.removeNota(nota);
-		assertFalse(alumno.getLista().contains(nota));
+		assertFalse(alumno.getNotas().contains(nota));
 		
 		
 	}
@@ -70,7 +91,7 @@ class AlumnoTest {
 		addNotaLista(lista, "lengua",4);
 		addNotaLista(lista, "ingles",7);
 		addNotaLista(lista, "fisica",8);
-		alumno.setLista(lista);
+		alumno.setNotas(lista);
 		assertEquals(new Nota("fisica",8),alumno.getNotaMayor());
 		
 		
@@ -83,7 +104,7 @@ class AlumnoTest {
 		addNotaLista(lista, "lengua",4);
 		addNotaLista(lista, "ingles",7);
 		addNotaLista(lista, "fisica",10);
-		alumno.setLista(lista);
+		alumno.setNotas(lista);
 		assertTrue(alumno.apruebaElCurso());	
 		
 	}
@@ -96,7 +117,7 @@ class AlumnoTest {
 		addNotaLista(lista, "lengua",4);
 		addNotaLista(lista, "ingles",7);
 		addNotaLista(lista, "fisica",2);
-		alumno.setLista(lista);
+		alumno.setNotas(lista);
 		assertFalse(alumno.apruebaElCurso());
 		
 		

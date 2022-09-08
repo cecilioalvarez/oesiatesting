@@ -5,57 +5,45 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class GestorFicheroTest {
-	
-	@Test
-	public void numeroLineasTest() {
-		
-		
+
+	GestorFichero fichero;
+
+	@BeforeEach
+	public void setup() {
+
 		try {
-			GestorFichero fichero= new GestorFichero("prueba.txt");
-			assertEquals(3,fichero.getNumeroLineas());
+			fichero = new GestorFichero("prueba.txt");
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
+
+	}
+
+	@Test
+	public void numeroLineasTest() {
+
+		assertEquals(3, fichero.getNumeroLineas());
+
 	}
 	
 	@Test
 	public void obtenerLineaTest() {
-		
-		
-		try {
-			GestorFichero fichero= new GestorFichero("prueba.txt");
-			assertEquals("me llamdo pedro",fichero.getLinea(1));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		
-	}
-	
-	@Test
-	public void contieneTextoTest() {
-		
-		
-		try {
-			GestorFichero fichero= new GestorFichero("prueba.txt");
-			assertTrue(fichero.contieneTexto("hola"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		
+
+		assertEquals("me llamdo pedro", fichero.getLinea(1));
+
 	}
 
+	@Test
+	public void contieneTextoTest() {
+
+		assertTrue(fichero.contieneTexto("hola"));
+
+	}
 
 }

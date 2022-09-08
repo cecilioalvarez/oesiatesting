@@ -6,7 +6,7 @@ import java.util.List;
 public class Alumno {
 
 	private String nombre;
-	private List<Nota> lista = new ArrayList<Nota>();
+	private List<Nota> notas = new ArrayList<Nota>();
 
 	public String getNombre() {
 		return nombre;
@@ -16,43 +16,43 @@ public class Alumno {
 		this.nombre = nombre;
 	}
 
-	public List<Nota> getLista() {
-		return lista;
+	public List<Nota> getNotas() {
+		return notas;
 	}
 
-	public void setLista(List<Nota> lista) {
-		this.lista = lista;
+	public void setNotas(List<Nota> lista) {
+		this.notas = lista;
 	}
 
 	public void addNota(Nota nota) {
 
-		lista.add(nota);
+		notas.add(nota);
 	}
 
 	public void removeNota(Nota nota) {
 
-		lista.remove(nota);
+		notas.remove(nota);
 	}
 
 	public boolean apruebaElCurso() {
 
 		double total = 0;
 
-		for (Nota n : lista) {
+		for (Nota n : notas) {
 
 			total += n.getValor();
 		}
-		return total / lista.size() >= 5;
+		return total / notas.size() >= 5;
 
 	}
 	
 	
 	public Nota getNotaMayor() {
 
-		Nota notaMayor= lista.get(0);
+		Nota notaMayor= notas.get(0);
 		
 
-		for (Nota n : lista) {
+		for (Nota n : notas) {
 
 			if (notaMayor.getValor()<n.getValor()) {
 				
@@ -70,7 +70,7 @@ public class Alumno {
 		List<Nota> suspensos=new ArrayList<Nota>();
 		
 
-		for (Nota n : lista) {
+		for (Nota n : notas) {
 
 			if (n.getValor()<5) {
 				
@@ -80,6 +80,23 @@ public class Alumno {
 		}
 		return suspensos;
 
+	}
+	
+	public double getNumeroSobreSalientes() {
+		
+		int total=0;
+		
+		for (Nota n : notas) {
+
+			if (n.getCalificacion().equals("SobreSaliente")) {
+				
+				
+				total++;
+			}
+		}
+		
+		return total;
+		
 	}
 	
 }

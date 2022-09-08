@@ -50,5 +50,13 @@ public class NotaTest {
 		String calificacion= nota.getCalificacion();
 		assertEquals("Insuficiente",calificacion);
 	}
+	
+	@Test
+	public void esNotaSobresalienteTest() {
+		
+		Nota nota = new Nota("matematicas",9);
+		String calificacion= nota.getCalificacion();
+		assertEquals("SobreSaliente",calificacion);
+	}
 
 }
