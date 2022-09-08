@@ -1,6 +1,7 @@
 package com.arquitecturajava.models;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -43,6 +44,28 @@ public class GestorGastoTest {
 		
 		verify(g1).getImporte4Cuotas();
 		verify(g2).getImporte4Cuotas();
+		
+	}
+	
+	@Test
+	void multipleCuotasTest() {
+	
+		Gasto g1= mock(Gasto.class);
+		Gasto g2= mock(Gasto.class);
+		
+		when(g1.getImporteCuotas(anyInt())).thenReturn(50.0);
+		when(g2.getImporteCuotas(anyInt())).thenReturn(50.0);
+		
+		//System.out.println(g1.getImporteCuotas(2));
+		GestorGasto gestor= new GestorGasto(g1,g2);
+//		
+//		
+//		
+//		
+		assertEquals(105,gestor.getImporteCuotas(5));
+//		
+//		verify(g1).getImporte4Cuotas();
+//		verify(g2).getImporte4Cuotas();
 		
 	}
 }

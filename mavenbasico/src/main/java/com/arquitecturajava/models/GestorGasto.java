@@ -49,4 +49,15 @@ public class GestorGasto {
 		}
 
 	}
+
+	public double getImporteCuotas(int cuotas) {
+		if (gasto1 != null && gasto2 != null) {
+
+			return gasto1.getImporteCuotas(cuotas) + gasto2.getImporteCuotas(cuotas)+5;
+
+		} else {
+
+			return gasto1.getImporteCuotas(cuotas) + gasto2.getImporteCuotas(cuotas) ;
+		}
+	}
 }
