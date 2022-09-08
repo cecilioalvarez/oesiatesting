@@ -47,7 +47,7 @@ public class Alumno {
 	}
 	
 	
-	public Nota notaMayor() {
+	public Nota getNotaMayor() {
 
 		Nota notaMayor= lista.get(0);
 		
@@ -65,7 +65,7 @@ public class Alumno {
 	}
 	
 	
-	public List<Nota> suspensos() {
+	public List<Nota> getNotasSuspensos() {
 
 		List<Nota> suspensos=new ArrayList<Nota>();
 		

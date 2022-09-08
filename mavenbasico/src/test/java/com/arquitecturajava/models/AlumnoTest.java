@@ -22,7 +22,7 @@ class AlumnoTest {
 	public void setUp() {
 		
 		alumno= new Alumno();
-		alumno.setLista(listaNotasInicial());
+		alumno.setLista(getListaNotasBasica());
 		
 	}
 	@Test
@@ -56,9 +56,9 @@ class AlumnoTest {
 	@Test
 	void alumnoNotaMayorTest() {
 			
-		List<Nota> notas = listaNotasParaMedia();
+		List<Nota> notas = listaNotaMayor();
 		alumno.setLista(notas);
-		assertEquals(new Nota("lengua",9),alumno.notaMayor());
+		assertEquals(new Nota("lengua",9),alumno.getNotaMayor());
 		
 		
 	}
@@ -67,9 +67,9 @@ class AlumnoTest {
 	@Test
 	void alumnosNotasSuspensas() {
 			
-		List<Nota> notas = listaNotasParaMedia();
+		List<Nota> notas = getListaNotasBasica();
 		alumno.setLista(notas);
-		List<Nota> notasSuspensas=alumno.suspensos();
+		List<Nota> notasSuspensas=alumno.getNotasSuspensos();
 		notasSuspensas.forEach((nota)->assertTrue(nota.getValor()<5));
 		
 		
@@ -87,13 +87,29 @@ class AlumnoTest {
 		Collections.addAll(notas, nota,nota2,nota3);
 		return notas;
 	}
+	
+	private List<Nota> listaNotaMayor() {
+		Nota nota=new Nota("matematias",2);
+		Nota nota2= new Nota("lengua",9);
+		Nota nota3= new Nota("lengua",7);
+		Nota nota4= new Nota("lengua",9);
+		Nota nota5= new Nota("lengua",10);
+		List<Nota> notas= new ArrayList<Nota>();
+	
+		Collections.addAll(notas, nota,nota2,nota3);
+		return notas;
+	}
 
-	private List<Nota> listaNotasInicial() {
+	private List<Nota> getListaNotasBasica() {
 		notas= new ArrayList<Nota>();
 		Nota nota=new Nota("matematias",2);
 		Nota nota2= new Nota("lengua",3);
 		Nota nota3= new Nota("lengua",0);
-		Collections.addAll(notas, nota,nota2,nota3);
+		Nota nota4=new Nota("matematias",7);
+		Nota nota5= new Nota("ingles",8);
+		Nota nota6= new Nota("fisica",4);
+		
+		Collections.addAll(notas, nota,nota2,nota3,nota4,nota5,nota6);
 		return notas;
 	}
 }
