@@ -13,8 +13,8 @@ public class PersonaRepositoryMemory implements PersonaRepository {
 	static  {
 		
 		lista.add(new Persona("pepe",20));
-		lista.add(new Persona("ana",40));
-		lista.add(new Persona("maria",30));
+		//lista.add(new Persona("ana",40));
+		//lista.add(new Persona("maria",30));
 	}
 	
 	

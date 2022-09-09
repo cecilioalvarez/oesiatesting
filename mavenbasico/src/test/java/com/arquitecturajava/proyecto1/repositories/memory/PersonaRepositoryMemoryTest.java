@@ -1,4 +1,4 @@
-package com.arquitecturajava.proyecto1.models.repositories.memory;
+package com.arquitecturajava.proyecto1.repositories.memory;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -19,48 +19,53 @@ import com.arquitecturajava.proyecto1.repositories.memory.PersonaRepositoryMemor
 public class PersonaRepositoryMemoryTest {
 
 	PersonaRepository repo;
-	
-	
+
 	@BeforeEach
 	public void setUp() {
-		
-		repo= new PersonaRepositoryMemory();
+
+		repo = new PersonaRepositoryMemory();
 	}
-	
+
 	@Test
 	public void buscarTodosTest() {
-		
-		List<Persona> lista= repo.buscarTodos();
+
+		List<Persona> lista = repo.buscarTodos();
 		assertNotNull(lista);
-		assertTrue(lista.size()>1);
-		
+		assertTrue(lista.size() > 1);
+
 	}
-	
+
 	@Test
 	public void insertarPersonaTest() {
-		Persona p= new Persona("juan",20);
+		Persona p = new Persona("juan", 20);
 		repo.insertar(p);
-		List<Persona> lista2= repo.buscarTodos();
+		List<Persona> lista2 = repo.buscarTodos();
 		assertTrue(lista2.contains(p));
 	}
-	
+
 	@Test
 	public void buscarUnoTest() {
-		
-		
-		Optional<Persona> oPersona= repo.buscarUno("pepe");
+
+		Optional<Persona> oPersona = repo.buscarUno("pepe");
 		assertTrue(oPersona.isPresent());
 		if (oPersona.isPresent()) {
-			
-			Persona p= oPersona.get();
-			assertEquals(new Persona("pepe",20),p);
+
+			Persona p = oPersona.get();
+			assertEquals(new Persona("pepe", 20), p);
 		}
-		
-		
-		Optional<Persona> oPersona2= repo.buscarUno("mario");
+
+		Optional<Persona> oPersona2 = repo.buscarUno("mario");
 		assertFalse(oPersona2.isPresent());
-		
-		
+
 	}
-	
+
+	@Test
+	public void borrarUnoTest() {
+
+		repo.borrar(new Persona("pepe"));
+		List<Persona> lista = repo.buscarTodos();
+		assertFalse(lista.contains(new Persona("pepe")));
+
+	}
+
 }

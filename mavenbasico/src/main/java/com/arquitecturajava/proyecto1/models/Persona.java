@@ -44,6 +44,10 @@ public class Persona {
 		Persona other = (Persona) obj;
 		return edad == other.edad && Objects.equals(nombre, other.nombre);
 	}
+	public Persona(String nombre) {
+		super();
+		this.nombre = nombre;
+	}
 	
 	
 }
