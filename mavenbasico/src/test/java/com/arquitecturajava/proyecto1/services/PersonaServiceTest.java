@@ -10,6 +10,7 @@ import static org.mockito.Mockito.when;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.arquitecturajava.proyecto1.models.Persona;
@@ -17,18 +18,24 @@ import com.arquitecturajava.proyecto1.repositories.PersonaRepository;
 
 public class PersonaServiceTest {
 
+	PersonaService service;
+	PersonaRepository repository;
 	
+	@BeforeEach
+	public void setUp() {
+		
+		repository= mock(PersonaRepository.class);
+		service= new PersonaService(repository);
+	}
 	
 	@Test
 	public void buscarTodasLasPersonasTest() {
-		//repositorio
-		PersonaRepository repo= mock(PersonaRepository.class);
-		List<Persona> datosMock= Arrays.asList(new Persona("juan",20),new Persona("ana",30));
-		when(repo.buscarTodos()).thenReturn(datosMock);
 	
+		List<Persona> datosMock= Arrays.asList(new Persona("juan",20),new Persona("ana",30));
+		when(repository.buscarTodos()).thenReturn(datosMock);
+	
+		List<Persona> lista=service.buscarTodosLasPersonas();
 		
-		PersonaService servicio= new PersonaService(repo);
-		List<Persona> lista=servicio.buscarTodosLasPersonas();
 		assertNotNull(lista);
 		assertTrue(lista.contains(new Persona("juan",20)));
 		assertTrue(lista.contains(new Persona("ana",30)));
@@ -39,12 +46,24 @@ public class PersonaServiceTest {
 	@Test
 	public void insertarPersonaTest() {
 		
-		PersonaRepository repo= mock(PersonaRepository.class);
-		PersonaService servicio= new PersonaService(repo);
-		servicio.insertarPersona(new Persona("juan",30));
+	
+		service.insertarPersona(new Persona("juan",30));
+		
 		//verifico la delegacion en el otro objeto que es lo que implementa el servicoi
 		//y nada mas
-		verify(repo).insertar(any(Persona.class));
+		verify(repository).insertar(any(Persona.class));
+	}
+	
+	
+	@Test
+	public void borrarPersonaTest() {
+		
+		
+		service.borrarPersona(new Persona("juan"));
+		
+		//verifico la delegacion en el otro objeto que es lo que implementa el servicoi
+		//y nada mas
+		verify(repository).borrar(any(Persona.class));
 	}
 	
 }
