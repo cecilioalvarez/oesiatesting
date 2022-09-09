@@ -1,11 +1,12 @@
 package com.arquitecturajava.proyecto1.repositories.memory;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,16 +15,20 @@ import org.junit.jupiter.api.Test;
 
 import com.arquitecturajava.proyecto1.models.Persona;
 import com.arquitecturajava.proyecto1.repositories.PersonaRepository;
-import com.arquitecturajava.proyecto1.repositories.memory.PersonaRepositoryMemory;
 
 public class PersonaRepositoryMemoryTest {
 
 	PersonaRepository repo;
-
+	List<Persona> listaInicial;
 	@BeforeEach
 	public void setUp() {
-
-		repo = new PersonaRepositoryMemory();
+		
+		listaInicial = new ArrayList<Persona>();
+		listaInicial.add(new Persona("pepe",20));
+		listaInicial.add(new Persona("ana",40));
+		listaInicial.add(new Persona("maria",30));
+		
+		repo = new PersonaRepositoryMemory(listaInicial);
 	}
 
 	@Test
@@ -31,7 +36,9 @@ public class PersonaRepositoryMemoryTest {
 
 		List<Persona> lista = repo.buscarTodos();
 		assertNotNull(lista);
-		assertTrue(lista.size() > 1);
+		assertEquals(3,lista.size());
+		assertArrayEquals(listaInicial.toArray(), lista.toArray());
+		
 
 	}
 
@@ -65,6 +72,7 @@ public class PersonaRepositoryMemoryTest {
 		repo.borrar(new Persona("pepe"));
 		List<Persona> lista = repo.buscarTodos();
 		assertFalse(lista.contains(new Persona("pepe")));
+		//assertEquals(2,lista.size());
 
 	}
 

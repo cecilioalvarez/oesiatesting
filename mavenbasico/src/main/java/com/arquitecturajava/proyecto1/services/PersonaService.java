@@ -14,7 +14,7 @@ public class PersonaService {
 		super();
 		this.repositorio = repositorio;
 	}
-
+	// notiene sentido
 	public List<Persona> buscarTodosLasPersonas() {
 		return repositorio.buscarTodos();
 	}
