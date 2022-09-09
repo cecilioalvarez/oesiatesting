@@ -1,6 +1,7 @@
 package com.arquitecturajava.proyecto1.models;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,4 +25,22 @@ public class PersonaTest {
 		assertEquals(false, estaJubilado3);
 	}
 	
+	
+	
+	@Test
+	public void noIgualdadPersonasTetst() {
+		
+		Persona p= new Persona("pedro",50);
+		Persona p2= new Persona("juan",50);
+		assertNotEquals(p,p2);
+	
+	}
+	@Test
+	public void igualdadPersonasTetst() {
+		
+		Persona p= new Persona("pedro",50);
+		Persona p2= new Persona("pedro",50);
+		assertEquals(p,p2);
+	
+	}
 }

@@ -25,4 +25,11 @@ public class PersonaRepositoryMemory implements PersonaRepository {
 
 	}
 
+	@Override
+	public void insertar(Persona persona) {
+		
+		lista.add(persona);
+		
+	}
+
 }

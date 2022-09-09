@@ -7,4 +7,5 @@ import com.arquitecturajava.proyecto1.models.Persona;
 public interface PersonaRepository {
 
 	List<Persona> buscarTodos();
+	void insertar(Persona persona);
 }
