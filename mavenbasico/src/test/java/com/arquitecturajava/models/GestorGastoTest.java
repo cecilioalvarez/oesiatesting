@@ -53,19 +53,18 @@ public class GestorGastoTest {
 		Gasto g1= mock(Gasto.class);
 		Gasto g2= mock(Gasto.class);
 		
-		when(g1.getImporteCuotas(anyInt())).thenReturn(50.0);
-		when(g2.getImporteCuotas(anyInt())).thenReturn(50.0);
+		when(g1.getImporteCuotas(anyInt()))
+		.thenReturn(50.0)
+		.thenReturn(60.0);
+		when(g2.getImporteCuotas(anyInt()))
+		.thenReturn(50.0)
+		.thenReturn(60.0);
 		
-		//System.out.println(g1.getImporteCuotas(2));
 		GestorGasto gestor= new GestorGasto(g1,g2);
-//		
-//		
-//		
-//		
+		// la primera
 		assertEquals(105,gestor.getImporteCuotas(5));
-//		
-//		verify(g1).getImporte4Cuotas();
-//		verify(g2).getImporte4Cuotas();
+		assertEquals(125,gestor.getImporteCuotas(20));
+
 		
 	}
 }
