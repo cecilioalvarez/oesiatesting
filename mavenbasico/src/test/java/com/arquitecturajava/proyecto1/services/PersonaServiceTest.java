@@ -12,19 +12,24 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.arquitecturajava.proyecto1.models.Persona;
 import com.arquitecturajava.proyecto1.repositories.PersonaRepository;
 
+@ExtendWith(MockitoExtension.class)
 public class PersonaServiceTest {
 
 	PersonaService service;
+	@Mock
 	PersonaRepository repository;
 	
 	@BeforeEach
 	public void setUp() {
 		
-		repository= mock(PersonaRepository.class);
+		
 		service= new PersonaService(repository);
 	}
 	
