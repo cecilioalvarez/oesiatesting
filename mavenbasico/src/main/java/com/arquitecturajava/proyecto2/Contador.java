@@ -12,11 +12,12 @@ public class Contador {
 		this.numero = numero;
 	}
 	
-	public void incrementar() {
+	public synchronized void  incrementar() {
 		numero=numero+1;
-		System.out.println(numero);
+	
 		try {
 			Thread.sleep(1000);
+			System.out.println(numero);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
