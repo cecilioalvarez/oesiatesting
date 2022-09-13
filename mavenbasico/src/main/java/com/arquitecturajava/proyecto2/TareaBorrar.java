@@ -13,12 +13,7 @@ public class TareaBorrar implements Runnable {
 	public TareaBorrar(Thread tareaAnterior) {
 		super();
 		this.tareaAnterior = tareaAnterior;
-		try {
-			tareaAnterior.join();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
 	}
 
 
@@ -28,10 +23,14 @@ public class TareaBorrar implements Runnable {
 		
 		  String fileName = "inicio/hola.txt";
 	        try {
+	        	tareaAnterior.join();
 	            Files.delete(Paths.get(fileName));
 	        } catch (IOException e) {
 	            e.printStackTrace();
-	        }
+	        } catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 		
 	}
