@@ -16,7 +16,8 @@ public class Contador {
 		numero=numero+1;
 	
 		try {
-			Thread.sleep(1000);
+			//espera un segundo
+			wait();
 			System.out.println(numero);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
