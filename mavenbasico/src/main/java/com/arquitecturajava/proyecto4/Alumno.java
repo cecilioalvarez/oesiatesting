@@ -28,13 +28,7 @@ public class Alumno {
 
 	public boolean tieneSobreSaliente() {
 		
-		for (Nota n:notas) {
-			
-			if (n.esSobreSaliente()) {
-				return true;
-			}
-		}
-			return false;
+		return notas.get(notas.size()-1).getValor()>=9;
 	}
 
 }

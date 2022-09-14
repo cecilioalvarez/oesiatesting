@@ -1,12 +1,15 @@
 package com.arquitecturajava.proyecto4;
 
-public class Colegio implements Runnable {
-
-	
+public class Padre implements Runnable {
 	private Alumno alumno;
 
 	public Alumno getAlumno() {
 		return alumno;
+	}
+
+	public Padre(Alumno alumno) {
+		super();
+		this.alumno = alumno;
 	}
 
 	public void setAlumno(Alumno alumno) {
@@ -16,22 +19,29 @@ public class Colegio implements Runnable {
 	@Override
 	public void run() {
 		
-		
 		for (int i=0;i<50;i++) {
+			
 			try {
-				Thread.sleep(500);
+				
+				synchronized (alumno) {
+					
+					
+					alumno.wait();
+					if (alumno.tieneSobreSaliente()) {
+						System.out.println("un sobresaliente vamos al futbol!!!");
+					}
+					
+					
+				}
+				
+				
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+			
 			}
-		double valor=Math.random()*10;
-		System.out.println("añadiendo nota"+ valor);
-		synchronized (alumno) {
-			alumno.addNota( new Nota (valor));
-			alumno.notifyAll();
 		}
 		
-		}
+		
 	}
 	
 	
